@@ -1,6 +1,7 @@
 public class IPv4 {
 	static final String ICMP = "01";
 	static final String UDP = "11";
+	static final String TCP = "06";
 	Hilfe help;
 	int baseOffset = 0;
 	String values;
@@ -111,6 +112,11 @@ public class IPv4 {
 			UDP udp = new UDP(values.substring(help.getBitsDec(4, 4) * 4 * 3));
 			udp.setBaseOffset(baseOffset + help.getBitsDec(4, 4) * 4);
 			udp.printAll();
+		}
+		if (help.getBytesHex(9, 1).equals(UDP)) {
+			TCP tcp = new UDP(values.substring(help.getBitsDec(4, 4) * 4 * 3));
+			tcp.setBaseOffset(baseOffset + help.getBitsDec(4, 4) * 4);
+			tcp.printAll();
 		}
 	}
 	
