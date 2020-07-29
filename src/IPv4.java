@@ -113,8 +113,8 @@ public class IPv4 {
 			udp.setBaseOffset(baseOffset + help.getBitsDec(4, 4) * 4);
 			udp.printAll();
 		}
-		if (help.getBytesHex(9, 1).equals(UDP)) {
-			TCP tcp = new UDP(values.substring(help.getBitsDec(4, 4) * 4 * 3));
+		if (help.getBytesHex(9, 1).equals(TCP)) {
+			TCP tcp = new TCP(values.substring(help.getBitsDec(4, 4) * 4 * 3));
 			tcp.setBaseOffset(baseOffset + help.getBitsDec(4, 4) * 4);
 			tcp.printAll();
 		}

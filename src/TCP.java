@@ -100,11 +100,13 @@ public class TCP {
 	
 	public void printAll() {
 		initialize();
+		System.out.println("-------------------TCP--------------------");
+		System.out.println("------------------" + hilfe.getBitsDec(8*12, 4) * 4 + " Bytes-------------------");
 		System.out.println("Source Port: " + getSourcePort());
 		System.out.println("Destination Port: " + getDestPort());
 		System.out.println("Sequence Number: " + getSeqNumber());
 		System.out.println("Acknowledgement Number: " + getAckNumber());
-		System.out.println("Offset: " + getOffset());
+		System.out.println("Offset (Length TCP header 4B): " + getOffset());
 		System.out.println("urg, ack, psh, rst, syn, fin: " + getUrg() + getAck() + getPsh() + getRst() + getSyn() + getFin());
 		System.out.println("Window: " + getWindow());
 		System.out.println("Chescksum: " + getChecksum());
