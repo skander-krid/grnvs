@@ -14,23 +14,23 @@ public class IPv4 {
 	}
 	
 	public String getVersion() {
-		return help.getBitsHex(0, 4);
+		return String.valueOf(help.getBitsDec(0, 4));
 	}
 	
 	public String getIHL() {
-		return help.getBitsHex(4, 4);
+		return String.valueOf(help.getBitsDec(4, 4));
 	}
 	
 	public String getTOS() {
-		return help.getBytesHex(1, 1);
+		return "0x" + help.getBytesHex(1, 1);
 	}
 	
 	public String getTotalLength() {
-		return help.getBytesHex(2, 2);
+		return Long.valueOf(help.getBytesHex(2, 2), 16) + " (0x" + help.getBytesHex(2, 2) + ")";
 	}
 	
 	public String getIdentification() {
-		return help.getBytesHex(4, 2);
+		return "0x" + help.getBytesHex(4, 2);
 	}
 	
 	public String getRES() {
@@ -46,19 +46,19 @@ public class IPv4 {
 	}
 	
 	public String getFragmentOffset() {
-		return help.getBitsHex(6*8 + 3, 13);
+		return "0x" + help.getBitsHex(6*8 + 3, 13);
 	}
 	
 	public String getTTL() {
-		return help.getBytesHex(8, 1);
+		return Long.valueOf(help.getBytesHex(8, 1), 16) + " (0x" + help.getBytesHex(8, 1) + ")";
 	}
 	
 	public String getProtocol() {
-		return help.getBytesHex(9, 1);
+		return "0x" + help.getBytesHex(9, 1);
 	}
 	
 	public String getHeaderChecksum() {
-		return help.getBytesHex(10, 2);
+		return "0x" + help.getBytesHex(10, 2);
 	}
 	
 	public String getSourceAddress() {
@@ -81,12 +81,12 @@ public class IPv4 {
 	
 	public void printAll() {
 		System.out.println("Version: " + getVersion());
-		System.out.println("IHL (length header inkl. optionen in 4B): " + getIHL());
+		System.out.println("IHL (4B): " + getIHL());
 		System.out.println("TOS: " + getTOS());
 		System.out.println("Total length: " + getTotalLength());
 		System.out.println("Identification: " + getIdentification());
 		System.out.println("RES, DF, MF: " + getRES() + " " + getDF() + " " + getMF());
-		System.out.println("Fragment offset: " + getFragmentOffset());
+		System.out.println("Fragment offset (8B): " + getFragmentOffset());
 		System.out.println("TTL: " + getTTL());
 		System.out.println("Protocol: " + getProtocol());
 		System.out.println("Checksum: " + getHeaderChecksum());
@@ -102,6 +102,5 @@ public class IPv4 {
 				+ "00 00 40 11 9c 24 c0 a8 02 64 c0 00 02 01 cc 1a "
 				+ "00 35 00 23 b2 4b 86 b2 01 20 00 01 00 00 00 00 "
 				+ "00 00 05 67 72 6e 76 73 03 6e 65 74 00 00 1c 00 01");
-		paket.printAll();
 	}
 }
