@@ -1,6 +1,7 @@
 public class IPv6 {
 	Hilfe help;
-
+	int baseOffset = 0;
+	
 	/*
 	 * 
 	 * Payload Length: gibt Länge der auf den Header folgenden Daten in Byte an. (inkl. Extension Headers)
@@ -9,6 +10,10 @@ public class IPv6 {
 	 */
 	public IPv6(String values) {
 		this.help = new Hilfe(values);
+	}
+	
+	public void setBaseOffset(int baseOffset) {
+		this.baseOffset = baseOffset;
 	}
 	
 	public Hilfe getHelp() {
