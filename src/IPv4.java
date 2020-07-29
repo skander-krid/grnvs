@@ -4,6 +4,7 @@ public class IPv4 {
 	Hilfe help;
 	int baseOffset = 0;
 	ICMPv4 icmp;
+	String values;
 	
 	/*
 	 * 
@@ -14,10 +15,7 @@ public class IPv4 {
 	 */
 	public IPv4(String values) {
 		this.help = new Hilfe(values);
-		if (help.getBytesHex(9, 1).equals(ICMP)) {
-			icmp = new ICMPv4(values.substring(help.getBitsDec(4, 4) * 4 * 3));
-			icmp.setBaseOffset(baseOffset + help.getBitsDec(4, 4) * 4);
-		}
+		this.values = values;
 	}
 	
 	public void setBaseOffset(int baseOffset) {
@@ -104,6 +102,11 @@ public class IPv4 {
 		System.out.println("Checksum: " + getHeaderChecksum());
 		System.out.println("Source Address: " + getSourceAddress());
 		System.out.println("Destination Address: " + getDestinationAddress());
+		if (help.getBytesHex(9, 1).equals(ICMP)) {
+			icmp = new ICMPv4(values.substring(help.getBitsDec(4, 4) * 4 * 3));
+			icmp.setBaseOffset(baseOffset + help.getBitsDec(4, 4) * 4);
+			System.out.println(baseOffset + help.getBitsDec(4, 4) * 4);
+		}
 		if (icmp != null) {
 			icmp.printAll();
 		}
