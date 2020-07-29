@@ -1,9 +1,8 @@
 public class IPv4 {
 	static final String ICMP = "01";
-	
+	static final String UDP = "11";
 	Hilfe help;
 	int baseOffset = 0;
-	ICMPv4 icmp;
 	String values;
 	
 	/*
@@ -90,6 +89,7 @@ public class IPv4 {
 	
 	public void printAll() {
 		System.out.println("-----------------------IPv4-----------------------");
+		System.out.println("-----------------------" + help.getBitsDec(4, 4) * 4 + " Bytes----------------------");
 		System.out.println("Version: " + getVersion());
 		System.out.println("IHL (4B): " + getIHL());
 		System.out.println("TOS: " + getTOS());
@@ -103,12 +103,14 @@ public class IPv4 {
 		System.out.println("Source Address: " + getSourceAddress());
 		System.out.println("Destination Address: " + getDestinationAddress());
 		if (help.getBytesHex(9, 1).equals(ICMP)) {
-			icmp = new ICMPv4(values.substring(help.getBitsDec(4, 4) * 4 * 3));
+			ICMPv4 icmp = new ICMPv4(values.substring(help.getBitsDec(4, 4) * 4 * 3));
 			icmp.setBaseOffset(baseOffset + help.getBitsDec(4, 4) * 4);
-			System.out.println(baseOffset + help.getBitsDec(4, 4) * 4);
-		}
-		if (icmp != null) {
 			icmp.printAll();
+		}
+		if (help.getBytesHex(9, 1).equals(UDP)) {
+			UDP udp = new UDP(values.substring(help.getBitsDec(4, 4) * 4 * 3));
+			udp.setBaseOffset(baseOffset + help.getBitsDec(4, 4) * 4);
+			udp.printAll();
 		}
 	}
 	
