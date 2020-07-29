@@ -21,27 +21,27 @@ public class IPv6 {
 	}
 
 	public String getVersion() {
-		return help.getBitsHex(0,4);
+		return help.getBitsDec(0,4) + "";
 	}
 
 	public String getTrafficClass() {
-		return help.getBitsHex(4, 8);
+		return help.getBitsDec(4, 8) + " (0x" + help.getBitsHex(4, 8) + ")";
 	}
 
 	public String getFlowLabel() {
-		return help.getBitsHex(12, 20);
+		return "0x" + help.getBitsHex(12, 20);
 	}
 
 	public String getPayloadLength() {
-		return help.getBytesHex(4, 2);
+		return "0x" + help.getBytesHex(4, 2) + " -- Offset: 0x" + Integer.toHexString(baseOffset + 4);
 	}
 
 	public String getNextHeader() {
-		return help.getBytesHex(6, 1);
+		return "0x" + help.getBytesHex(6, 1) + " -- Offset: 0x" + Integer.toHexString(baseOffset + 6);
 	}
 
 	public String getHopLimit() {
-		return help.getBytesHex(7, 1);
+		return "0x" + help.getBytesHex(7, 1) + " -- Offset: 0x" + Integer.toHexString(baseOffset + 7);
 	}
 
 	public String getSourceAddress() {
@@ -50,7 +50,7 @@ public class IPv6 {
 		for (int byt = startBit; byt < startBit + 16; byt += 2) {
 			result += help.getBytesHex(byt, 2) + ":";
 		}
-		return result;
+		return result + " -- Offset: 0x" + Integer.toHexString(baseOffset + startBit);
 	}
 
 	public String getDestinationAddress() {
@@ -59,7 +59,7 @@ public class IPv6 {
 		for (int byt = startBit; byt < startBit + 16; byt += 2) {
 			result += help.getBytesHex(byt, 2) + ":";
 		}
-		return result;
+		return result + " -- Offset: 0x" + Integer.toHexString(baseOffset + startBit);
 	}
 
 	public void setHelp(Hilfe help) {
@@ -67,6 +67,8 @@ public class IPv6 {
 	}
 
 	public void printAll() {
+		System.out.println("-----------------------IPv6-----------------------");
+		System.out.println("---------------------" + Integer.valueOf(help.getBytesHex(4, 2), 16) + " Bytes----------------------");
 		System.out.println("Version: " + getVersion());
 		System.out.println("Traffic Class: " + getTrafficClass());
 		System.out.println("Flow Label: " + getFlowLabel());

@@ -47,6 +47,8 @@ public String getType() {
 }
 
 public void printAll() {
+	System.out.println("----------------------Frame-------------------------");
+	System.out.println("--------------------14 Bytes------------------------");
 	System.out.println("Destination MAC: " + getDst());
 	System.out.println("Source MAC: " + getSrc());
 	System.out.println("Type L3: 0x" + getType());
