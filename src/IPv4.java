@@ -10,6 +10,7 @@ public class IPv4 {
 	 */
 	public IPv4(String values) {
 		this.help = new Hilfe(values);
+		printAll();
 	}
 	
 	public String getVersion() {

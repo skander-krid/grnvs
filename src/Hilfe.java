@@ -13,9 +13,12 @@ public class Hilfe {
 		String result = "";
 		
 		for (int i = from; i < from + bytesCount; i++) {
-			result += Integer.toHexString(bytes[i]);
+			if(Integer.toHexString(bytes[i]).length() == 1)
+				result += "0" + Integer.toHexString(bytes[i]);
+			else
+				result += Integer.toHexString(bytes[i]);
+
 		}
-		
 		return result;
 	}
 	
